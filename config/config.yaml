@@ -24,8 +24,8 @@ reference:
   conifer: "/beegfs-storage/projects/wp3/nobackup/Workspace/CoNIFER/Twist_Exome_Target_hg19_woY.bed"
   design_bed: "/beegfs-storage/projects/wp3/Reference_files/Manifest/Clinical_research_exome/TWIST/Twist_Exome_Target_hg19.bed"
   design_intervals: "/beegfs-storage/projects/wp3/Reference_files/Manifest/Clinical_research_exome/TWIST/Twist_Exome_Target_hg19_interval_list.bed"
-  fasta: "/beegfs-storage/data/ref_genomes/bcbio-nextgen/sam/hg19.with.mt.fasta"
-  fai: "/beegfs-storage/data/ref_genomes/bcbio-nextgen/sam/hg19.with.mt.fasta.fai "
+  fasta: "/beegfs-storage/data/ref_genomes/bcbio-nextgen/bwa/hg19.with.mt.fasta"
+  fai: "/beegfs-storage/data/ref_genomes/bcbio-nextgen/bwa/hg19.with.mt.fasta.fai"
   genome_dir: "/beegfs-storage/data/ref_genomes/bcbio-nextgen/sam/"
   sites: "/beegfs-storage/data/ref_genomes/bcbio-nextgen/gatk/hg19_v0_Homo_sapiens_assembly19.known_indels.vcf"
 

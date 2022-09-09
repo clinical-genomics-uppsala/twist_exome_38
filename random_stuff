@@ -12,6 +12,7 @@ pip install --upgrade snakemake
 module load singularity
 module load slurm-drmaa
 pip install drmaa
+
 #
 #vim /projects/wp3/nobackup/Workspace/WGS_pipeline_GPU_test/venv/lib/python3.8/site-packages/hydra_genetics/utils/units.py
 #rm [str]
@@ -25,9 +26,7 @@ snakemake --profil twist_exome --notemp
 snakemake --profil twist_exome --notemp --snakefile twist_exome_hg37/workflow/Snakefile  --configfile twist_exome_hg37/config/config.yaml
 
 
-hydra-genetics create-input-files -d Alignment_1 -b NNNNN-NNNNN
-
--b NNNNN-NNNNN
+hydra-genetics create-input-files -d . -p NextSeq -t N --tc 0.0 -b NNNNNNNN
 
 
 
@@ -51,6 +50,7 @@ snakemake --cores 2 -s /projects/wp3/nobackup/Workspace/WGS_pipeline_GPU_test/Po
 snakemake -n -s /projects/wp3/nobackup/Workspace/WGS_pipeline_GPU_test/Poirot_RD-WGS/workflow/Snakefile --use-singularity --singularity-args " -B /projects -B /beegfs-storage -B /scratch -B /data "
 
 snakemake -n --configfile Poirot_RD-WGS-develop/config/config.yaml -s Poirot_RD-WGS-develop/workflow/Snakefile --use-singularity --singularity-args " -B /projects -B /beegfs-storage -B /scratch -B /data " --notemp
+
 
 
 jobs: 100
