@@ -1,7 +1,7 @@
 
 rule addRef:
     input:
-        vcf="parabricks/pbrun_deepvariant_gvcf/{sample}.vcf",
+        vcf="parabricks/pbrun_deepvariant/{sample}.vcf",
         ref=config["reference"]["fasta"],
     output:
         temp("vcf_final/{sample}_ref.vcf"),

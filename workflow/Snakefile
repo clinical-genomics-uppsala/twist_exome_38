@@ -89,9 +89,9 @@ module parabricks:
 
 use rule pbrun_fq2bam from parabricks as parabricks_fq2bam
 
-#use rule pbrun_deepvariant from parabricks as parabricks_deepvariant
-
-use rule pbrun_deepvariant_gvcf from parabricks as parabricks_deepvariant_gvcf
+use rule pbrun_deepvariant from parabricks as parabricks_deepvariant with:
+    output:
+        vcf=temp("parabricks/pbrun_deepvariant/{sample}.g.vcf"),
 
 use rule pbrun_glnexus from parabricks as parabricks_glnexus
 
@@ -107,6 +107,7 @@ use rule * from prealignment as prealign_*
 include: "rules/add_ref_to_vcf.smk"
 
 include: "rules/conifer.smk"
+
 
 
 module qc:
@@ -186,3 +187,5 @@ use rule samtools_index from misc as misc_samtools_index with:
         )
     message:
         "{rule}: Index {wildcards.file}.crumble.cram file"
+
+include: "rules/peddy.smk"
