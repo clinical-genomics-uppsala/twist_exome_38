@@ -75,16 +75,25 @@ use rule ed_filter from cnv_sv as cnv_ed_filter with:
         "{rule}: filter exomedepth cnv_sv/{rule}_{wildcards.sex}/{wildcards.sample}_{wildcards.type}.RData"
 
 
+# module parabricks:
+#     snakefile:
+#         github("hydra-genetics/parabricks", path="workflow/Snakefile", tag=config["modules"]["parabricks"],)
+#     config:
+#         config
+
 module parabricks:
     snakefile:
-        github("hydra-genetics/parabricks", path="workflow/Snakefile", tag=config["modules"]["parabricks"],)
+        "/projects/wp3/nobackup/Workspace/padraic_testing/parabricks/workflow/Snakefile"
     config:
         config
 
 use rule pbrun_fq2bam from parabricks as parabricks_fq2bam
 
-use rule pbrun_deepvariant from parabricks as parabricks_deepvariant
+#use rule pbrun_deepvariant from parabricks as parabricks_deepvariant
 
+use rule pbrun_deepvariant_gvcf from parabricks as parabricks_deepvariant_gvcf
+
+use rule pbrun_glnexus from parabricks as parabricks_glnexus
 
 module prealignment:
     snakefile:

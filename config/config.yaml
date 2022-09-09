@@ -1,18 +1,18 @@
 ---
 
-resources: "twist_exome_hg37/config/resources.yaml"
-samples: "samples.tsv"
-units: "units.tsv"
+resources: "config/resources.yaml"
+samples: "config/samples.tsv"
+units: "config/units.tsv"
 
 default_container: "docker://hydragenetics/common:0.1.3"
 
 programdir:
-  dir: "/projects/wp3/nobackup/TWIST/INBOX/TE106_220517/220517_NB501298_0364_AHLVK7BGXL/twist_exome_hg37/workflow"
+  dir: "/projects/wp3/nobackup/Workspace/padraic_testing/twist_exome_38/workflow"
 #  dir: "/projects/wp3/nobackup/Workspace/Jessika_playground/twist_exome_38-main/workflow"
 
 modules:
   compression: "v1.1.0"
-  cnv_sv: "exomedepth"
+  cnv_sv: "zezzipa-patch-1"
   parabricks: "v0.2.0"
   prealignment: "v0.4.0"
   qc: "zezzipa-patch-1"
@@ -66,7 +66,7 @@ multiqc:
   container: "docker://hydragenetics/multiqc:1.11"
   reports:
     DNA:
-      config: "twist_exome_hg37/config/multiqc.config"
+      config: "config/multiqc.config"
       included_unit_types: ['N']
       qc_files:
         - "qc/fastqc/{sample}_{type}_{flowcell}_{lane}_{barcode}_{read}_fastqc.zip"
@@ -85,7 +85,9 @@ multiqc:
         - "prealignment/fastp_pe/{sample}_{flowcell}_{lane}_{barcode}_{type}.json"
 
 #Qualimaps
-#Somalier
+#
+# pbrun_deepvariant:
+#   extra: "--gvcf"
 
 picard_collect_alignment_summary_metrics:
   container: "docker://hydragenetics/picard:2.25.0"
@@ -110,16 +112,16 @@ picard_collect_insert_size_metrics:
 picard_collect_multiple_metrics:
   container: "docker://hydragenetics/picard:2.25.0"
   threads: 3
-  # output_ext:
-  #   - "alignment_summary_metrics"
-  #   - "base_distribution_by_cycle_metrics"
-  #   - "base_distribution_by_cycle.pdf"
-  #   - "insert_size_metrics"
-  #   - "insert_size_histogram.pdf"
-  #   - "quality_by_cycle_metrics"
-  #   - "quality_by_cycle.pdf"
-  #   - "quality_distribution_metrics"
-  #   - "quality_distribution.pdf"
+  output_ext:
+    - "alignment_summary_metrics"
+    - "base_distribution_by_cycle_metrics"
+    - "base_distribution_by_cycle.pdf"
+    - "insert_size_metrics"
+    - "insert_size_histogram.pdf"
+    - "quality_by_cycle_metrics"
+    - "quality_by_cycle.pdf"
+    - "quality_distribution_metrics"
+    - "quality_distribution.pdf"
 
 
 samtools_stats:

@@ -16,7 +16,7 @@ min_version("7.8.0")
 
 
 ### Set and validate config file
-configfile: "twist_exome_hg37/config/config.yaml"
+configfile: "config.yaml"
 validate(config, schema="../schemas/config.schema.yaml")
 
 

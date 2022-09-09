@@ -2,7 +2,7 @@ default_resources:
   gres: ""
   mem_mb: 9216
   mem_per_cpu: 9216
-  partition: "low"
+  partition: "core"
   threads: 1
   time: "24:00:00"
 
@@ -19,6 +19,22 @@ pbrun_fq2bam:
   time: "20:00:00"
 
 pbrun_deepvariant:
+  gres: "--gres=gpu:2"
+  mem_mb: 81920
+  mem_per_cpu: 4096
+  partition: "GPU"
+  threads: 20
+  time: "20:00:00"
+
+pbrun_deepvariant_gvcf:
+  gres: "--gres=gpu:2"
+  mem_mb: 81920
+  mem_per_cpu: 4096
+  partition: "GPU"
+  threads: 20
+  time: "20:00:00"
+
+pbrun_glnexus:
   gres: "--gres=gpu:2"
   mem_mb: 81920
   mem_per_cpu: 4096
