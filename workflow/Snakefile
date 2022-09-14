@@ -11,7 +11,7 @@ report: "report/workflow.rst"
 
 
 #include: "rules/vcf_filter.smk"
-
+include: "rules/peddy.smk"
 
 rule all:
     input:
@@ -75,15 +75,9 @@ use rule ed_filter from cnv_sv as cnv_ed_filter with:
         "{rule}: filter exomedepth cnv_sv/{rule}_{wildcards.sex}/{wildcards.sample}_{wildcards.type}.RData"
 
 
-# module parabricks:
-#     snakefile:
-#         github("hydra-genetics/parabricks", path="workflow/Snakefile", tag=config["modules"]["parabricks"],)
-#     config:
-#         config
-
 module parabricks:
     snakefile:
-        "/projects/wp3/nobackup/Workspace/padraic_testing/parabricks/workflow/Snakefile"
+        github("hydra-genetics/parabricks", path="workflow/Snakefile", tag=config["modules"]["parabricks"],)
     config:
         config
 
@@ -92,8 +86,8 @@ use rule pbrun_fq2bam from parabricks as parabricks_fq2bam
 use rule pbrun_deepvariant from parabricks as parabricks_deepvariant with:
     output:
         vcf=temp("parabricks/pbrun_deepvariant/{sample}.g.vcf"),
+        vcf2=temp("parabricks/pbrun_deepvariant/{sample}.vcf"),
 
-use rule pbrun_glnexus from parabricks as parabricks_glnexus
 
 module prealignment:
     snakefile:
@@ -107,8 +101,6 @@ use rule * from prealignment as prealign_*
 include: "rules/add_ref_to_vcf.smk"
 
 include: "rules/conifer.smk"
-
-
 
 module qc:
     snakefile:
@@ -187,5 +179,3 @@ use rule samtools_index from misc as misc_samtools_index with:
         )
     message:
         "{rule}: Index {wildcards.file}.crumble.cram file"
-
-include: "rules/peddy.smk"

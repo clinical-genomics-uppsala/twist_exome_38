@@ -50,6 +50,13 @@ wildcard_constraints:
     sex="M|F",
 
 
+def get_in_gvcf(wildcards):
+    input_list = []
+    for sample in get_samples(samples):
+        gvcf = "deepvariant/{}.g.vcf".format(sample)
+        input_list.append(gvcf)
+    return " -i ".join(input_list)
+
 ### Functions
 
 def compile_output_list(wildcards):
@@ -58,6 +65,13 @@ def compile_output_list(wildcards):
         "vcf_final/%s.vcf.gz" % sample
         for sample in get_samples(samples)
     ])
+    output_list.append([
+        "parabricks/pbrun_deepvariant/%s.vcf" % sample
+        for sample in get_samples(samples)
+    ])
+    output_list.append("qc/peddy/all.vcf.gz")
+    output_list.append("qc/peddy/all.ped")
+    output_list.append("qc/peddy/all.peddy.ped")
     output_list.append("conifer/calls/calls_F_svd6.txt")
     output_list.append("conifer/calls/calls_M_svd6.txt")
     output_list.append([
