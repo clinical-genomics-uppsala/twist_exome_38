@@ -11,7 +11,7 @@ fastp_pe:
   threads: 8
 
 glnexus:
-  threads: 8
+  threads: 20
 
 pbrun_fq2bam:
   gres: "--gres=gpu:4"

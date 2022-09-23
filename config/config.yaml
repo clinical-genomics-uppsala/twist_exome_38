@@ -63,7 +63,7 @@ fastqc:
   container: "docker://hydragenetics/fastqc:0.11.9"
 
 glnexus:
-  bedfile: "/projects/wp3/nobackup/Workspace/PEDDY/1000G.bed"
+  bedfile: "/projects/wp3/nobackup/Workspace/PEDDY/1000G_wX.bed"
   container: "docker://ghcr.io/dnanexus-rnd/glnexus:v1.4.3"
 
 mosdepth_bed:
@@ -80,6 +80,8 @@ multiqc:
         - "qc/fastqc/{sample}_{type}_{flowcell}_{lane}_{barcode}_{read}_fastqc.zip"
         - "qc/mosdepth_bed/{sample}_{type}.mosdepth.summary.txt"
         - "qc/mosdepth_bed/{sample}_{type}.per-base.bed.gz"
+        - "qc/peddy/peddy_sex_check_mqc.tsv"
+        - "qc/peddy/peddy_rel_check_mqc.tsv"
         - "qc/picard_collect_duplication_metrics/{sample}_{type}.duplication_metrics.txt"
         - "qc/picard_collect_hs_metrics/{sample}_{type}.HsMetrics.txt"
         - "qc/picard_collect_gc_bias_metrics/{sample}_{type}.gc_bias.summary_metrics"
@@ -99,7 +101,8 @@ pbrun_deepvariant:
 
 peddy:
   container: "docker://quay.io/biocontainers/peddy:0.4.8--pyh5e36f6f_0"
-  samples: "/beegfs-storage/projects/wp3/nobackup/Workspace/padraic_testing/twist_exome_38/config/SampleSheet.csv"
+  samples: "config/SampleSheet.csv"
+  config: 'peddy_mqc.yaml'
 
 picard_collect_alignment_summary_metrics:
   container: "docker://hydragenetics/picard:2.25.0"
