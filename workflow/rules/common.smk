@@ -53,7 +53,7 @@ wildcard_constraints:
 def get_in_gvcf(wildcards):
     input_list = []
     for sample in get_samples(samples):
-        gvcf = "deepvariant/{}.g.vcf".format(sample)
+        gvcf = "parabricks/pbrun_deepvariant/{}.g.vcf".format(sample)
         input_list.append(gvcf)
     return " -i ".join(input_list)
 
@@ -69,9 +69,6 @@ def compile_output_list(wildcards):
         "parabricks/pbrun_deepvariant/%s.vcf" % sample
         for sample in get_samples(samples)
     ])
-    output_list.append("qc/peddy/all.vcf.gz")
-    output_list.append("qc/peddy/all.ped")
-    output_list.append("qc/peddy/all.peddy.ped")
     output_list.append("conifer/calls/calls_F_svd6.txt")
     output_list.append("conifer/calls/calls_M_svd6.txt")
     output_list.append([
